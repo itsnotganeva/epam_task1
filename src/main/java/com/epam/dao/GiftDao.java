@@ -42,8 +42,7 @@ public class GiftDao implements IGiftDao {
         List<Sweets> sweetsList = new ArrayList<>();
 
         ObjectMapper mapper = new ObjectMapper();
-
-        //mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        
         try
         {
             // convert JSON array to list
@@ -80,11 +79,11 @@ public class GiftDao implements IGiftDao {
             if (sweets.getSugarContent() >= startPosition && sweets.getSugarContent() <= finalPosition) {
                 foundSweets.add(sweets);
                 LOGGER.debug("Sweet with sugar content ({}) getOperation", sweets.getSugarContent());
-                LOGGER.info("Sweet with sugar content ({}) retrieved value {}", sweets.getSugarContent(), sweets);
+                LOGGER.info("Sweet with sugar content ({}): {}", sweets.getSugarContent(), sweets);
             }
         }
         if (foundSweets.size() == 0) {
-            LOGGER.warn("Sweet with sugar content ({} - {}) not found", startPosition, finalPosition);
+            LOGGER.warn("Sweets with sugar content range ({} - {}) not found", startPosition, finalPosition);
         }
         return foundSweets;
     }

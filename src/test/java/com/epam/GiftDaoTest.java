@@ -37,6 +37,16 @@ public class GiftDaoTest {
     }
 
     @Test
+    public void testSweetsBySugarContentSecondScenario() {
+        //GIVEN
+        gift.setSweetsList(sw);
+        //WHEN
+        List<Sweets> sweets = giftDao.getSweetsBySugarContent(70, 105, gift);
+        //THEN
+        Assertions.assertNotEquals(sw, sweets);
+    }
+
+    @Test
     public void testWeightOfGift(){
         //GIVEN
         gift.setSweetsList(sw);
