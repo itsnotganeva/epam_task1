@@ -3,7 +3,7 @@ package com.epam.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Present {
+public class Gift {
 
     private List<Sweets> sweetsList = new ArrayList<>();
 
@@ -15,17 +15,17 @@ public class Present {
         this.sweetsList = sweetsList;
     }
 
-    public Present() {
+    public Gift() {
 
     }
 
-    public Present(List<Sweets> sweets) {
+    public Gift(List<Sweets> sweets) {
         this.sweetsList = sweets;
     }
 
     @Override
     public String toString() {
-        return "Present{" +
+        return "Gift{" +
                 "sweetsList=" + sweetsList +
                 '}';
     }

@@ -1,6 +1,6 @@
 package com.epam.dao;
 
-import com.epam.entity.Present;
+import com.epam.entity.Gift;
 import com.epam.entity.Sweets;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
@@ -13,15 +13,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class PresentDao implements IPresentDao{
+public class GiftDaoImpl implements GiftDao {
+
+    private final String FILE_PATH = "D:\\JavaProjects\\EPAM\\epam_task1\\presents.json";
 
     @Override
-    public void writePresent(Present present) {
+    public void writeGift(Gift gift) {
         ObjectMapper mapper = new ObjectMapper();
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
         try
         {
-            writer.writeValue(Paths.get("presents.json").toFile(), present.getSweetsList());
+            writer.writeValue(Paths.get(FILE_PATH).toFile(), gift.getSweetsList());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -29,9 +31,9 @@ public class PresentDao implements IPresentDao{
     }
 
     @Override
-    public Present readPresent() {
+    public Gift readGift() {
 
-        Present present = new Present();
+        Gift gift = new Gift();
         List<Sweets> sweetsList = new ArrayList<>();
 
         ObjectMapper mapper = new ObjectMapper();
@@ -40,30 +42,30 @@ public class PresentDao implements IPresentDao{
         try
         {
             // convert JSON array to list
-            sweetsList = mapper.readValue(Paths.get("presents.json").toFile(), new TypeReference<ArrayList<Sweets>>() {});
-            present.setSweetsList(sweetsList);
+            sweetsList = mapper.readValue(Paths.get(FILE_PATH).toFile(), new TypeReference<ArrayList<Sweets>>() {});
+            gift.setSweetsList(sweetsList);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return present;
+        return gift;
     }
 
-    public double getWeightOfPresent(Present present) {
+    public double getWeightOfGift(Gift gift) {
         double weight = 0;
-        for (Sweets sweets : present.getSweetsList()) {
+        for (Sweets sweets : gift.getSweetsList()) {
             weight+=sweets.getWeight();
         }
         return weight;
     }
 
-    public List<Sweets> sortSweets(Present present) {
-        Collections.sort(present.getSweetsList(), ((o1, o2) -> o1.getCalorieContent() - o2.getCalorieContent()));
-        return present.getSweetsList();
+    public List<Sweets> sortSweetsByCalorie(Gift gift) {
+        Collections.sort(gift.getSweetsList(), ((o1, o2) -> o1.getCalorieContent() - o2.getCalorieContent()));
+        return gift.getSweetsList();
     }
 
-    public List<Sweets> findSweets(int startPosition, int finalPosition, Present present) {
+    public List<Sweets> findSweetsBySugarContent(int startPosition, int finalPosition, Gift gift) {
         List<Sweets> foundSweets = new ArrayList<>();
-        for (Sweets sweets : present.getSweetsList()) {
+        for (Sweets sweets : gift.getSweetsList()) {
             if (sweets.getSugarContent() >= startPosition && sweets.getSugarContent() <= finalPosition) {
                 foundSweets.add(sweets);
             }

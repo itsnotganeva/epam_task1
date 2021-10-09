@@ -1,7 +1,22 @@
 package com.epam.entity;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.EXISTING_PROPERTY,
+        property = "category"
+)
+
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Candies.class, name = "candy"),
+        @JsonSubTypes.Type(value = Biscuits.class, name = "biscuit")
+}
+)
 
 public abstract class Sweets {
+    private String category;
     private String name;
     private double weight;
     private int sugarContent;
@@ -12,12 +27,21 @@ public abstract class Sweets {
 
     }
 
-    public Sweets(String name, double weight, int sugarContent, String flavor, int calorieContent) {
+    public Sweets(String category, String name, double weight, int sugarContent, String flavor, int calorieContent) {
+        this.category = category;
         this.name = name;
         this.weight = weight;
         this.sugarContent = sugarContent;
         this.flavor = flavor;
         this.calorieContent = calorieContent;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getName() {
@@ -59,6 +83,5 @@ public abstract class Sweets {
     public void setCalorieContent(int calorieContent) {
         this.calorieContent = calorieContent;
     }
-
 
 }

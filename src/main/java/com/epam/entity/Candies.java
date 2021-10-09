@@ -14,14 +14,14 @@ public class Candies extends Sweets{
     public Candies() {
     }
 
-    public Candies(String name, double weight, int sugarContent, String flavor, int calorieContent, String candyMass) {
-        super(name, weight, sugarContent, flavor, calorieContent);
+    public Candies(String category, String name, double weight, int sugarContent, String flavor, int calorieContent, String candyMass) {
+        super(category, name, weight, sugarContent, flavor, calorieContent);
         this.candyMass = candyMass;
     }
 
     @Override
     public String toString() {
-        return "\nCandies: \nname: " + getName() + "\n" + "weight: " + getWeight() + "\n" +
+        return "\nCandy: \nname: " + getName() + "\n" + "weight: " + getWeight() + "\n" +
                 "sugar content: " + getSugarContent() + "\n" + "flavor: " + getFlavor() + "\n" +
                 "calorie content: " + getCalorieContent() + "\n" + "candy mass: " + getCandyMass() + "\n";
     }

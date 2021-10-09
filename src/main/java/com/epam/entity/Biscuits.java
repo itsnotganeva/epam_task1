@@ -15,14 +15,14 @@ public class Biscuits extends Sweets{
 
     }
 
-    public Biscuits(String name, double weight, int sugarContent, String flavor, int calorieContent, String typeOfDough) {
-        super(name, weight, sugarContent, flavor, calorieContent);
+    public Biscuits(String category, String name, double weight, int sugarContent, String flavor, int calorieContent, String typeOfDough) {
+        super(category, name, weight, sugarContent, flavor, calorieContent);
         this.typeOfDough = typeOfDough;
     }
 
     @Override
     public String toString() {
-        return "\nBiscuits: \nname: " + getName() + "\n" + "weight: " + getWeight() + "\n" +
+        return "\nBiscuit: \nname: " + getName() + "\n" + "weight: " + getWeight() + "\n" +
                 "sugar content: " + getSugarContent() + "\n" + "flavor: " + getFlavor() + "\n" +
                 "calorie content: " + getCalorieContent() + "\n" + "type of dough: " + getTypeOfDough() + "\n";
     }
