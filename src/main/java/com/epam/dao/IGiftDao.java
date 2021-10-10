@@ -10,7 +10,9 @@ public interface IGiftDao {
 
     void writeGift(Gift present);
     Gift readGift();
+    List<Sweets> getSweets(Gift gift);
     double getWeightOfGift(Gift gift);
     List<Sweets> sortSweetsByCalorie(Gift gift);
-    List<Sweets> getSweetsBySugarContent(int startPosition, int finalPosition, Gift gift);
+    List<Sweets> getSweetsBySugarContent(int min, int max, Gift gift);
+
 }

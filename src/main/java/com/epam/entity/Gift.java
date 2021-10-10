@@ -7,20 +7,20 @@ public class Gift {
 
     private List<Sweets> sweetsList = new ArrayList<>();
 
-    public List<Sweets> getSweetsList() {
-        return sweetsList;
-    }
-
-    public void setSweetsList(List<Sweets> sweetsList) {
-        this.sweetsList = sweetsList;
-    }
-
     public Gift() {
 
     }
 
     public Gift(List<Sweets> sweets) {
         this.sweetsList = sweets;
+    }
+
+    public List<Sweets> getSweetsList() {
+        return sweetsList;
+    }
+
+    public void setSweetsList(List<Sweets> sweetsList) {
+        this.sweetsList = sweetsList;
     }
 
     @Override

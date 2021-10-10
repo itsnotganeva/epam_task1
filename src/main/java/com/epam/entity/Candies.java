@@ -3,19 +3,19 @@ package com.epam.entity;
 public class Candies extends Sweets{
     private String candyMass;
 
-    public String getCandyMass() {
-        return candyMass;
-    }
-
-    public void setCandyMass(String candyMass) {
-        this.candyMass = candyMass;
-    }
-
     public Candies() {
     }
 
     public Candies(String category, String name, double weight, int sugarContent, String flavor, int calorieContent, String candyMass) {
         super(category, name, weight, sugarContent, flavor, calorieContent);
+        this.candyMass = candyMass;
+    }
+
+    public String getCandyMass() {
+        return candyMass;
+    }
+
+    public void setCandyMass(String candyMass) {
         this.candyMass = candyMass;
     }
 

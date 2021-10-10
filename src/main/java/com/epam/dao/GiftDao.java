@@ -42,7 +42,7 @@ public class GiftDao implements IGiftDao {
         List<Sweets> sweetsList = new ArrayList<>();
 
         ObjectMapper mapper = new ObjectMapper();
-        
+
         try
         {
             // convert JSON array to list
@@ -51,8 +51,13 @@ public class GiftDao implements IGiftDao {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        LOGGER.info("The sweets of gift: {}", gift.getSweetsList());
         return gift;
+    }
+
+    @Override
+    public List<Sweets> getSweets(Gift gift) {
+        LOGGER.info("The sweets of gift: {}", gift.getSweetsList());
+        return gift.getSweetsList();
     }
 
     @Override
@@ -73,18 +78,19 @@ public class GiftDao implements IGiftDao {
     }
 
     @Override
-    public List<Sweets> getSweetsBySugarContent(int startPosition, int finalPosition, Gift gift) {
+    public List<Sweets> getSweetsBySugarContent(int min, int max, Gift gift) {
         List<Sweets> foundSweets = new ArrayList<>();
         for (Sweets sweets : gift.getSweetsList()) {
-            if (sweets.getSugarContent() >= startPosition && sweets.getSugarContent() <= finalPosition) {
+            if (sweets.getSugarContent() >= min && sweets.getSugarContent() <= max) {
                 foundSweets.add(sweets);
                 LOGGER.debug("Sweet with sugar content ({}) getOperation", sweets.getSugarContent());
                 LOGGER.info("Sweet with sugar content ({}): {}", sweets.getSugarContent(), sweets);
             }
         }
         if (foundSweets.size() == 0) {
-            LOGGER.warn("Sweets with sugar content range ({} - {}) not found", startPosition, finalPosition);
+            LOGGER.warn("Sweets with sugar content range ({} - {}) not found", min, max);
         }
         return foundSweets;
     }
+
 }
